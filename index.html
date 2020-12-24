@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Unstated</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Andika+New+Basic&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bgd-1: #2F333C;
+        --bgd-2: #36252d;
+        --fgd-1: #b07d80;
+        --fgd-2: #dda59d;
+        --acc-1: #8f939e;
+        --acc-2: #ece9ea;
+      }
+
+      html, body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(45deg, var(--bgd-1), var(--bgd-2));
+      }
+      
+      h1 {
+        font-family: 'Andika New Basic', sans-serif;
+        font-weight: normal;
+        margin-top: 0;
+        text-align: center;
+      }
+
+      input[type="text"],
+      input[type="password"],
+      button {
+        font-family: 'Andika New Basic', sans-serif;
+        box-shadow: inset 0 0.0625em 0.125em rgba(10,10,10,.05);
+        border-radius: 4px;
+        color: #363636;
+        border: 1px solid #999;
+        padding-top: calc(0.5em - 1px);
+        padding-bottom: calc(0.5em - 1px);
+        padding-left: calc(0.75em - 1px);
+        padding-right: calc(0.75em - 1px);
+        outline: 0;
+      }
+      input[type="text"]:hover,
+      input[type="password"]:hover {
+        border-color: #777;
+      }
+      input[type="text"]:focus,
+      input[type="password"]:focus {
+        border-color: #3273dc;
+        box-shadow: 0 0 0 0.125em rgba(50,115,220,.25);
+      }
+      input[type="text"].invalid,
+      input[type="password"].invalid {
+        border-color: #f14668;
+      }
+      input.fullwidth {
+        width: calc(100% - 10px);
+      }
+
+      input[type="checkbox"] {
+        display: none;
+        visibility: hidden;
+        opacity: 0;
+      }
+      label {
+        font-family: 'Andika New Basic', sans-serif;
+        user-select: none;
+        padding: 5px;
+        background: var(--fgd-1);
+        border: 1px solid rgb(0, 0, 0, 0.3);
+        border-radius: 2px;
+        box-shadow: none;
+        cursor: pointer;
+        transition: all 0.1s;
+      }
+      input[type="checkbox"]:checked + label {
+        background: var(--fgd-2);
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+      }
+
+      button[type="submit"] {
+        width: 100%;
+        padding: 5px;
+        border: 1px solid grey;
+        background: var(--acc-2);
+        outline: 0;
+      }
+
+      span {
+        font-family: 'Andika New Basic', sans-serif;
+      }
+
+      .center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+      .fullwidth {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .focus {
+        padding: 5vw;
+        background: var(--fgd-1);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+      }
+      .counter {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="center">
+      <div class="focus">
+        <h1>Unstated</h1>
+        <input type="text" id="site" placeholder="Site" class="fullwidth">
+        <br>
+        <input type="text" id="username" placeholder="Username" class="fullwidth">
+        <br>
+        <input type="password" id="masterpass" placeholder="Master Password" class="fullwidth">
+        <br>
+        <div class="fullwidth">
+          <input type="checkbox" id="lowercase" checked>
+          <label for="lowercase">a-z</label>
+
+          <input type="checkbox" id="uppercase" checked>
+          <label for="uppercase">A-Z</label>
+
+          <input type="checkbox" id="numbers" checked>
+          <label for="numbers">0-9</label>
+
+          <input type="checkbox" id="specials" checked>
+          <label for="specials">!/_</label>
+        </div>
+        <br>
+        <div class="counter">
+          <span>Length:</span>
+          <div>
+            <button id="len_dec">&ndash;</button>
+            <span id="length">32</span>
+            <button id="len_inc">+</button>
+          </div>
+        </div>
+        <hr>
+        <button type="submit" id="gen">Generate</button>
+        <br>
+        <div class="fullwidth">
+          <button id="copy">Copy</button>
+          <input type="password" id="output" placeholder="Output" readonly>
+          <button id="show">Show</button>
+        </div>
+      </div>
+    </div>
+    <script src="sha512.min.js"></script>
+    <script src="unstated.js"></script>
+  </body>
+</html>

@@ -121,7 +121,11 @@ d('copy').addEventListener('click', ()=>{
   if(temp_flip){
     d('output').type = 'password';
   }
-  d('output').setSelectionRange(0, d('output').value.length);
+
+  d('output').classList.add('success');
+  setTimeout(()=>{
+    d('output').classList.remove('success');
+  }, 300);
 });
 d('show').addEventListener('click', ()=>{
   d('output').type = (d('output').type==='password'?'text':'password');

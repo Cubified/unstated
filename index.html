@@ -15,6 +15,18 @@
         --acc-2: #ece9ea;
       }
 
+      @keyframes success {
+        0% {
+          background: white;
+        }
+        50% {
+          background: #48c774;
+        }
+        100% {
+          background: white;
+        }
+      }
+
       html, body {
         margin: 0;
         padding: 0;
@@ -36,10 +48,10 @@
         border-radius: 4px;
         color: #363636;
         border: 1px solid #999;
-        padding-top: calc(0.5em - 1px);
-        padding-bottom: calc(0.5em - 1px);
-        padding-left: calc(0.75em - 1px);
-        padding-right: calc(0.75em - 1px);
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+        padding-left: 0.75em;
+        padding-right: 0.75em;
         outline: 0;
       }
       input[type="text"]:hover,
@@ -55,8 +67,15 @@
       input[type="password"].invalid {
         border-color: #f14668;
       }
+      input[type="text"].success,
+      input[type="password"].success {
+        animation: success 0.3s;
+      }
+      input#output:focus {
+          border-color: #48c774;
+      }
       input.fullwidth {
-        width: calc(100% - 10px);
+        width: calc(100% - 1.5em - 2px);
       }
 
       input[type="checkbox"] {
@@ -80,11 +99,13 @@
         box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
       }
 
+      button {
+        background: var(--acc-2);
+      }
       button[type="submit"] {
         width: 100%;
         padding: 5px;
         border: 1px solid grey;
-        background: var(--acc-2);
         outline: 0;
       }
 

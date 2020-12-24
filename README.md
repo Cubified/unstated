@@ -14,3 +14,9 @@ A simple stateless password manager, inspired by [LessPass](https://lesspass.com
 Password generation is a two-step process:
 1. A combination of the site name, username, and master password is SHA512/224 hashed.
 2. The output hash is encoded using a modified form of the Base64 encoding algorithm, mapping 3 character input segments to 4 characters of output.
+
+### To-Do
+
+- Beautify UI
+- Add mnemonic/icon generator to help with remembering master password
+- Write Chrome extension to automate password generation

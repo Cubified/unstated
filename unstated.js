@@ -98,11 +98,29 @@ d('gen').addEventListener('click', ()=>{
   );
 });
 
+let intr;
+function change_len(amt){
+  d('length').innerText = parseInt(d('length').innerText)+amt;
+}
+
 d('len_inc').addEventListener('click', ()=>{
-  d('length').innerText = parseInt(d('length').innerText)+1;
+  change_len(1);
 });
+d('len_inc').addEventListener('mousedown', ()=>{
+  intr = setInterval(()=>{change_len(1);}, 100);
+});
+d('len_inc').addEventListener('mouseup', ()=>{
+  clearInterval(intr);
+});
+
 d('len_dec').addEventListener('click', ()=>{
-  d('length').innerText = parseInt(d('length').innerText)-1;
+  change_len(-1);
+});
+d('len_dec').addEventListener('mousedown', ()=>{
+  intr = setInterval(()=>{change_len(-1);}, 100);
+});
+d('len_dec').addEventListener('mouseup', ()=>{
+  clearInterval(intr);
 });
 
 d('output').addEventListener('click', ()=>{

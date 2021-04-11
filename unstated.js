@@ -186,4 +186,5 @@ d('copy').addEventListener('click', ()=>{
 });
 d('show').addEventListener('click', ()=>{
   d('output').type = (d('output').type==='password'?'text':'password');
+  d('show').innerText = (d('output').type==='password'?'Show':'Hide');
 });

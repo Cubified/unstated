@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Unstated</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;1,300;1,400;1,900&display=swap" rel="stylesheet">
     <style>
@@ -43,6 +43,7 @@
         font-family: 'Source Sans Pro', sans-serif !important;
         user-select: none;
 
+        touch-action: manipulation;
         -webkit-touch-callout: none !important;
         -webkit-user-select: none !important;
         -webkit-tap-highlight-color: transparent !important;
@@ -209,9 +210,9 @@
         <button type="submit" id="gen">Generate</button>
         <br>
         <div class="fullwidth">
-          <button id="copy">Copy</button>
+          <button type="button" id="copy">Copy</button>
           <input type="password" id="output" placeholder="Output" readonly>
-          <button id="show">Show</button>
+          <button type="button" id="show" style="width:57px">Show</button>
         </div>
       </form>
     </div>

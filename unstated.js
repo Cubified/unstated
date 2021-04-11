@@ -96,6 +96,14 @@ d('gen').addEventListener('click', ()=>{
       length:    parseInt(d('length').innerText)
     }
   );
+
+  d('output').select();
+  d('output').setSelectionRange(0, d('output').value.length);
+});
+
+d('form').addEventListener('submit', (e)=>{
+  d('gen').click();
+  e.preventDefault();
 });
 
 let intr;
@@ -112,6 +120,12 @@ d('len_inc').addEventListener('mousedown', ()=>{
 d('len_inc').addEventListener('mouseup', ()=>{
   clearInterval(intr);
 });
+d('len_inc').addEventListener('touchstart', ()=>{
+  intr = setInterval(()=>{change_len(1);}, 100);
+});
+d('len_inc').addEventListener('touchend', ()=>{
+  clearInterval(intr);
+});
 
 d('len_dec').addEventListener('click', ()=>{
   change_len(-1);
@@ -120,6 +134,12 @@ d('len_dec').addEventListener('mousedown', ()=>{
   intr = setInterval(()=>{change_len(-1);}, 100);
 });
 d('len_dec').addEventListener('mouseup', ()=>{
+  clearInterval(intr);
+});
+d('len_dec').addEventListener('touchstart', ()=>{
+  intr = setInterval(()=>{change_len(-1);}, 100);
+});
+d('len_dec').addEventListener('touchend', ()=>{
   clearInterval(intr);
 });
 

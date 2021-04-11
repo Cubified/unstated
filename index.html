@@ -39,6 +39,15 @@
         }
       }
 
+      * {
+        font-family: 'Source Sans Pro', sans-serif !important;
+        user-select: none;
+
+        -webkit-touch-callout: none !important;
+        -webkit-user-select: none !important;
+        -webkit-tap-highlight-color: transparent !important;
+      }
+
       html, body {
         margin: 0;
         padding: 0;
@@ -46,7 +55,6 @@
       }
       
       h1 {
-        font-family: 'Source Sans Pro', sans-serif;
         font-weight: lighter;
         font-size: 30pt;
         font-style: italic;
@@ -56,9 +64,14 @@
       }
 
       input[type="text"],
+      input[type="password"] {
+        -webkit-touch-callout: default !important;
+        -webkit-user-select: text !important;
+      }
+
+      input[type="text"],
       input[type="password"],
       button {
-        font-family: 'Source Sans Pro', sans-serif;
         box-shadow: inset 0 0.0625em 0.125em rgba(10,10,10,.05);
         border-radius: 4px;
         color: #363636;
@@ -156,7 +169,7 @@
   </head>
   <body>
     <div class="center">
-      <div class="focus">
+      <form class="focus" id="form">
         <h1>Unstated</h1>
         <input type="text" id="site" placeholder="Site" class="fullwidth">
         <br>
@@ -181,9 +194,9 @@
         <div class="counter">
           <span>Length:</span>
           <div>
-            <button id="len_dec">&ndash;</button>
+            <button type="button" id="len_dec">&ndash;</button>
             <span id="length">32</span>
-            <button id="len_inc">+</button>
+            <button type="button" id="len_inc">+</button>
           </div>
         </div>
         <hr>
@@ -194,7 +207,7 @@
           <input type="password" id="output" placeholder="Output" readonly>
           <button id="show">Show</button>
         </div>
-      </div>
+      </form>
     </div>
     <script src="sha512.min.js"></script>
     <script src="unstated.js"></script>

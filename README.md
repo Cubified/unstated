@@ -17,6 +17,4 @@ Password generation is a two-step process:
 
 ### To-Do
 
-- Beautify UI
-- Add mnemonic/icon generator to help with remembering master password
 - Write Chrome extension to automate password generation

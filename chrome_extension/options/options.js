@@ -28,6 +28,7 @@ function save_exceptions(){
     if(el.children.length > 0 && el.children[2].value.trim() !== ''){
       let id = el.parentNode.id;
       out[el.querySelector(`#name${id}`).value.trim().toLowerCase()] = {
+        site: el.querySelector(`#site${id}`).value,
         username: el.querySelector(`#username${id}`).value,
         disable: el.querySelector(`#disable${id}`).checked,
         lowercase: el.querySelector(`#lowercase${id}`).checked,

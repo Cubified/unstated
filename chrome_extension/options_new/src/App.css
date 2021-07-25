@@ -201,7 +201,7 @@ button[type="submit"] {
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
-  height: 155px;
+  height: 185px;
 }
 
 .exception-card {

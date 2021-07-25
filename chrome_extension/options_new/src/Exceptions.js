@@ -1,3 +1,5 @@
+/*global chrome*/
+
 import React from 'react';
 
 class Checkbox extends React.Component {
@@ -42,6 +44,8 @@ class ExceptionCard extends React.Component {
           <Checkbox checked={this.props.exception.numbers}   disabled={this.props.exception.disable} onChange={(e)=>{this.changeCheckbox(e, 'numbers')}}>0-9</Checkbox>
           <Checkbox checked={this.props.exception.specials}  disabled={this.props.exception.disable} onChange={(e)=>{this.changeCheckbox(e, 'specials')}}>!/_</Checkbox>
         </div>
+        <br />
+        <input type="number" value={this.props.exception.length} onChange={(e)=>{this.typeText(e, 'length')}} />
       </div>
     );
   }
@@ -57,7 +61,6 @@ export default class Exceptions extends React.Component {
     this.removeException = this.removeException.bind(this);
     this.changeException = this.changeException.bind(this);
 
-    /*
     let arr = [];
     chrome.storage.local.get({
       exceptions: {}
@@ -69,7 +72,7 @@ export default class Exceptions extends React.Component {
         });
       }
       this.setState({exceptions:arr});
-    });*/
+    });
   }
   addException(){
     this.state.exceptions.push({
@@ -98,22 +101,17 @@ export default class Exceptions extends React.Component {
     this.setState({
       exceptions: this.state.exceptions
     });
-    /* 
     let out = {};
     this.state.exceptions.forEach((el)=>{
       if(el.name.trim() !== ''){
-        out[el.name.trim().toLowerCase()] = {
-          site: el.site === '' ? undefined : el.site,
-          username: el.username === '' ? undefined : el.username,
-          disable: el.disable,
-          lowercase: el.lowercase,
-          uppercase: el.uppercase,
-          numbers: el.numbers,
-          specials: el.specials,
-          length: el.length
-        };
+        out[el.name.trim().toLowerCase()] = {...el};
+        if(el.site.trim() === '') out[el.name.trim().toLowerCase()].site = undefined;
+        if(el.username.trim() === '') out[el.name.trim().toLowerCase()].username = undefined;
       }
-    });*/
+    });
+    chrome.storage.local.set({
+      exceptions: out
+    }, ()=>{});
   }
   showHelpText(){
     if(this.state.exceptions.length === 0){

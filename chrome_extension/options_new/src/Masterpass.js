@@ -1,3 +1,5 @@
+/*global chrome*/
+
 import React from 'react';
 import Mnemonic from './Mnemonic.js';
 
@@ -8,19 +10,17 @@ export default class Masterpass extends React.Component {
       value: ''
     };
     this.handleChange = this.handleChange.bind(this);
-/*
     chrome.storage.local.get({
       masterpass: ''
     }, (items)=>{
       this.setState({value: items.masterpass});
-    });*/
+    });
   }
   handleChange(event){
     this.setState({value: event.target.value});
-    /*
     chrome.storage.local.set({
       masterpass: event.target.value
-    }, ()=>{});*/
+    }, ()=>{});
   }
   render(){
     return (

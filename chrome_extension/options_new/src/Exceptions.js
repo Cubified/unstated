@@ -74,6 +74,19 @@ export default class Exceptions extends React.Component {
       this.setState({exceptions:arr});
     });
   }
+  saveExceptions(){
+    let out = {};
+    this.state.exceptions.forEach((el)=>{
+      if(el.name.trim() !== ''){
+        out[el.name.trim().toLowerCase()] = {...el};
+        if(el.site === undefined || el.site.trim() === '') out[el.name.trim().toLowerCase()].site = undefined;
+        if(el.username === undefined || el.username.trim() === '') out[el.name.trim().toLowerCase()].username = undefined;
+      }
+    });
+    chrome.storage.local.set({
+      exceptions: out
+    }, ()=>{});
+  }
   addException(){
     this.state.exceptions.push({
       name: '',
@@ -87,7 +100,8 @@ export default class Exceptions extends React.Component {
       length: 32
     });
     this.setState({
-      exceptions: this.state.exceptions
+      exceptions: this.state.exceptions,
+      shouldScroll: true
     });
   }
   removeException(index){
@@ -95,23 +109,14 @@ export default class Exceptions extends React.Component {
     this.setState({
       exceptions: this.state.exceptions
     });
+    this.saveExceptions();
   }
   changeException(index, prop, val){
     this.state.exceptions[index][prop] = val;
     this.setState({
       exceptions: this.state.exceptions
     });
-    let out = {};
-    this.state.exceptions.forEach((el)=>{
-      if(el.name.trim() !== ''){
-        out[el.name.trim().toLowerCase()] = {...el};
-        if(el.site.trim() === '') out[el.name.trim().toLowerCase()].site = undefined;
-        if(el.username.trim() === '') out[el.name.trim().toLowerCase()].username = undefined;
-      }
-    });
-    chrome.storage.local.set({
-      exceptions: out
-    }, ()=>{});
+    this.saveExceptions();
   }
   showHelpText(){
     if(this.state.exceptions.length === 0){
@@ -123,7 +128,7 @@ export default class Exceptions extends React.Component {
   render(){
     return (
       <div>
-        <div className="exceptions">
+        <div className="exceptions" id="exceptions-container">
           {this.state.exceptions.map((item, index) => {
             return (
               <ExceptionCard key={index} index={index} removeException={this.removeException} onChange={this.changeException} exception={item} />
@@ -135,5 +140,13 @@ export default class Exceptions extends React.Component {
         <button className="exception-add" onClick={this.addException}>+</button>
       </div>
     );
+  }
+  componentDidUpdate(){
+    if(this.state.shouldScroll){
+      document.getElementById('exceptions-container').scrollTo(9999, 0);
+      this.setState({
+        shouldScroll: false
+      });
+    }
   }
 }
